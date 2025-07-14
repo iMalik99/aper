@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/components/ui/logo";
 import { LogOut, User } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -44,8 +45,9 @@ export const DashboardLayout = ({ children, currentUser, onLogout }: DashboardLa
           <div className="flex justify-between items-center h-16">
             <Logo />
             
+            
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
+              <div className="hidden sm:flex items-center gap-3">
                 <div className="text-right">
                   <div className="text-sm font-medium text-foreground">{currentUser.name}</div>
                   <div className="text-xs text-muted-foreground">{currentUser.email}</div>
@@ -55,14 +57,16 @@ export const DashboardLayout = ({ children, currentUser, onLogout }: DashboardLa
                 </Badge>
               </div>
               
+              <ThemeToggle />
+              
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={onLogout}
                 className="text-muted-foreground hover:text-foreground"
               >
-                <LogOut className="w-4 h-4 mr-2" />
-                Logout
+                <LogOut className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Logout</span>
               </Button>
             </div>
           </div>
@@ -70,7 +74,7 @@ export const DashboardLayout = ({ children, currentUser, onLogout }: DashboardLa
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {children}
       </main>
     </div>
