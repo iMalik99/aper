@@ -24,7 +24,12 @@ const App = () => {
 
   const handleAuthSuccess = (user: User) => {
     setCurrentUser(user);
-    setCurrentView("dashboard");
+    // Redirect employees directly to their form, others to dashboard
+    if (user.role === "employee") {
+      setCurrentView("employee-form");
+    } else {
+      setCurrentView("dashboard");
+    }
   };
 
   const handleLogout = () => {
