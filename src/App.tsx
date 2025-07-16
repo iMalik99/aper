@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthPage } from "./pages/AuthPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { EmployeeFormPage } from "./pages/EmployeeFormPage";
+import { OfficerFormPage } from "./pages/OfficerFormPage";
+import { CountersignFormPage } from "./pages/CountersignFormPage";
 import { DashboardLayout } from "./components/layout/DashboardLayout";
 
 const queryClient = new QueryClient();
@@ -72,6 +74,26 @@ const App = () => {
         return (
           <DashboardLayout currentUser={currentUser} onLogout={handleLogout}>
             <EmployeeFormPage 
+              onBack={handleBackToDashboard}
+              currentUser={currentUser}
+            />
+          </DashboardLayout>
+        );
+      
+      case "officer-form":
+        return (
+          <DashboardLayout currentUser={currentUser} onLogout={handleLogout}>
+            <OfficerFormPage 
+              onBack={handleBackToDashboard}
+              currentUser={currentUser}
+            />
+          </DashboardLayout>
+        );
+      
+      case "countersign-form":
+        return (
+          <DashboardLayout currentUser={currentUser} onLogout={handleLogout}>
+            <CountersignFormPage 
               onBack={handleBackToDashboard}
               currentUser={currentUser}
             />
